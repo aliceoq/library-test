@@ -6,9 +6,9 @@
     "jsx": "react",
     "module": "ESNext",
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "dist/types",
     "sourceMap": true,
-    "outDir": "original",
+    "outDir": "dist",
     "moduleResolution": "node",
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
@@ -18,7 +18,7 @@
     "lib": ["ES2021"]
   },
   "exclude": [
-    "original",
+    "dist",
     "node_modules"
   ]
 }

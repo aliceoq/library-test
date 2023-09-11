@@ -14,7 +14,7 @@ export default [
   {
     input: "src/index.ts",
     output: {
-      file: packageJson.module,
+      file: "dist/index.js",
       format: "esm",
       sourcemap: true,
       inlineDynamicImports: true,
@@ -33,7 +33,7 @@ export default [
   },
   {
     input: "src/index.ts",
-    output: [{ file: "dist/types.d.ts", format: "es" }],
+    output: [{ file: "dist/index.d.ts", format: "es" }],
     plugins: [dts.default()],
   },
 ];
