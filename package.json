@@ -33,7 +33,6 @@
     "@types/react": "^18.2.2",
     "@types/react-router-hash-link": "^2.4.6",
     "@types/react-svg-pan-zoom": "^3.3.5",
-    "@types/styled-components": "^5.1.26",
     "rollup": "^3.0.0",
     "rollup-plugin-import-css": "^3.3.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
