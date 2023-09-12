@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.5",
+  "version": "1.0.2",
   "type": "module",
   "description": "",
   "repository": "https://github.com/RobsonOlv/library-test",
@@ -18,7 +18,8 @@
     "copy-text-to-clipboard": "^3.2.0",
     "html-react-parser": "^4.2.2",
     "mermaid": "^10.4.0",
-    "next-mdx-remote": "4.2.0",
+    "next": "13.2.4",
+    "next-mdx-remote": "^4.1.0",
     "react-animate-height": "^3.2.2",
     "react-router-hash-link": "^2.4.3",
     "react-svg-pan-zoom": "^3.12.1"
@@ -33,7 +34,6 @@
     "@types/react-router-hash-link": "^2.4.6",
     "@types/react-svg-pan-zoom": "^3.3.5",
     "@types/styled-components": "^5.1.26",
-    "react-router-dom": "^6.15.0",
     "rollup": "^3.0.0",
     "rollup-plugin-import-css": "^3.3.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
