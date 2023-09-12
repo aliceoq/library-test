@@ -4,6 +4,7 @@
     "access": "public"
   },
   "version": "1.0.2",
+  "type": "module",
   "description": "",
   "repository": "https://github.com/RobsonOlv/library-test",
   "types": "index.d.ts",
@@ -32,6 +33,7 @@
     "@types/react-router-hash-link": "^2.4.6",
     "@types/react-svg-pan-zoom": "^3.3.5",
     "@types/styled-components": "^5.1.26",
+    "react-router-dom": "^6.15.0",
     "rollup": "^3.0.0",
     "rollup-plugin-import-css": "^3.3.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
