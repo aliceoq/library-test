@@ -1,29 +1,16 @@
 {
-  "name": "@vtex-docs/library",
+  "name": "@RobsonOlv/library-test",
   "version": "1.0.0",
   "description": "",
-  "repository": "",
-  "types": "dist/index.d.ts",
+  "repository": "https://github.com/RobsonOlv/library-test",
+  "types": "index.d.ts",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs"
   },
-  "keywords": [
-    "demo",
-    "ui",
-    "react",
-    "library",
-    "tutorial",
-    "learning",
-    "educational",
-    "example",
-    "beginner-friendly",
-    "practice"
-  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@highlightjs/cdn-assets": "^11.8.0",
-    "@vtex/brand-ui": "^0.46.1",
     "copy-text-to-clipboard": "^3.2.0",
     "html-react-parser": "^4.2.2",
     "mermaid": "^10.4.0",
@@ -33,6 +20,7 @@
     "react-svg-pan-zoom": "^3.12.1"
   },
   "devDependencies": {
+    "@lit-labs/nextjs": "^0.1.2",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
@@ -50,6 +38,7 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "@vtex/brand-ui": "^0.46.1"
   }
 }
