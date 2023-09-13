@@ -4,7 +4,8 @@
     "strict": true,
     "skipLibCheck": true,
     "jsx": "react-jsx",
-    "module": "ESNext",
+    "target": "ESNext",
+    "module": "esnext",
     "declaration": true,
     "declarationDir": "./dist",
     "sourceMap": true,
@@ -15,7 +16,8 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "src",
     "rootDir": "src",
-    "lib": ["ES2021"]
+    "allowJs": true,
+    "lib": ["es6", "dom"]
   },
   "include": ["./src", "index.d.ts", "global.d.ts"]
 }

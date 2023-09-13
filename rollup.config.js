@@ -10,20 +10,26 @@ export default [
   {
     input: "src/index.ts",
     output: {
-      dir: "./dist",
-      format: "esm",
-      sourcemap: true,
-      inlineDynamicImports: true,
+      dir: './dist',
+      format: "es",
+      // sourcemap: true,
+      // inlineDynamicImports: true,
     },
     plugins: [
       peerDepsExternal(),
       resolve(),
-      commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       css({ modules: true }),
       json(),
+      commonjs(),
       terser(),
     ],
-    external: ["react", "react-dom", "@vtex/brand-ui"],
+    // external: ["react", "react-dom", "@vtex/brand-ui"],
+    external: [
+      'react',
+      '@mdx-js/react',
+      'react/jsx-runtime',
+      './jsx-runtime.cjs',
+    ],
   },
 ];

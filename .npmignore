@@ -1,1 +1,9 @@
-node_modules
+__tests__
+examples
+.prettierrc
+tsconfig.json
+babel.config.js
+src
+.circleci
+*.tgz
+global.d.ts

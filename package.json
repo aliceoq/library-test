@@ -4,12 +4,15 @@
     "access": "public"
   },
   "version": "1.0.9",
-  "type": "module",
   "description": "",
   "repository": "https://github.com/RobsonOlv/library-test",
+  "type": "module",
   "types": "index.d.ts",
+  "exports": {
+    ".": "./index.js"
+  },
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs"
+    "build": "rm -rf ./dist && rollup -c rollup.config.js"
   },
   "author": "",
   "license": "MIT",
