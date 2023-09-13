@@ -14,18 +14,20 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@highlightjs/cdn-assets": "^11.8.0",
-    "copy-text-to-clipboard": "^3.2.0",
-    "html-react-parser": "^4.2.2",
-    "mermaid": "^10.4.0",
+    "@highlightjs/cdn-assets": "^11.7.0",
+    "@lit-labs/nextjs": "^0.1.2",
+    "@vtex/brand-ui": "^0.46.1",
+    "copy-text-to-clipboard": "^3.0.1",
+    "html-react-parser": "^3.0.15",
+    "mermaid": "^10.1.0",
     "next": "13.2.4",
     "next-mdx-remote": "^4.1.0",
-    "react-animate-height": "^3.2.2",
+    "react-animate-height": "^3.0.4",
+    "react-router-dom": "^6.15.0",
     "react-router-hash-link": "^2.4.3",
     "react-svg-pan-zoom": "^3.12.1"
   },
   "devDependencies": {
-    "@lit-labs/nextjs": "^0.1.2",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
@@ -41,7 +43,6 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "@vtex/brand-ui": "^0.46.1",
     "react": "^18.2.0",
     "react-dom": "18.2.0"
   }

@@ -20,7 +20,7 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
-      css(),
+      css({ modules: true }),
       json(),
       terser(),
     ],

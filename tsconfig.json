@@ -17,5 +17,5 @@
     "rootDir": "src",
     "lib": ["ES2021"]
   },
-  "include": ["./src", "types.d.ts", "global.d.ts"]
+  "include": ["./src", "index.d.ts", "global.d.ts"]
 }
