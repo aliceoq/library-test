@@ -17,7 +17,7 @@
     "baseUrl": "src",
     "rootDir": "src",
     "allowJs": true,
-    "lib": ["es6", "dom"]
+    "lib": ["es6", "ES2021", "dom"]
   },
   "include": ["./src", "index.d.ts", "global.d.ts"]
 }
