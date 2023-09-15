@@ -19,5 +19,6 @@
     "allowJs": true,
     "lib": ["es6", "ES2021", "dom"]
   },
-  "include": ["./src", "index.d.ts", "global.d.ts"]
+  "include": ["./src", "index.d.ts", "global.d.ts"],
+  "exclude": ["node_modules", "dist"]
 }
