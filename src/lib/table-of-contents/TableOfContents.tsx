@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 // import { HashLink } from 'react-router-hash-link'
 import Link from 'next/link.js'
 import { Box, Text } from '@vtex/brand-ui'
 import AnimateHeight from 'react-animate-height'
 
-import { removeHTML } from '../../utils/string-utils'
-import { useHeadingObserver } from '../../utils/hooks/useHeadingObserver'
+import { removeHTML } from 'utils/string-utils'
+import { useHeadingObserver } from 'utils/hooks/useHeadingObserver'
 import { ActiveItem, Item } from './TableOfContents.types'
+
+import { LibraryContext } from 'utils/context/test'
 
 import styles from './styles'
 
@@ -16,6 +18,7 @@ const TableOfContents = () => {
   const [headings, setHeadings] = useState<Item[]>([])
   const { activeItem, updateActiveItem } = useHeadingObserver(headings)
 
+  const { testValue } = useContext(LibraryContext)
 
   useEffect(() => {
     document.querySelectorAll('h2, h3').forEach((heading) => {
@@ -39,6 +42,11 @@ const TableOfContents = () => {
       })
     })
   }, [])
+
+  useEffect(() => {
+    console.log(testValue)
+  }, [testValue])
+
 
   const Item = ({
     title,
