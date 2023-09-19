@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { HashLink } from 'react-router-hash-link'
+// import { HashLink } from 'react-router-hash-link'
+import Link from 'next/link.js'
 import { Box, Text } from '@vtex/brand-ui'
 import AnimateHeight from 'react-animate-height'
 
@@ -51,16 +52,29 @@ const TableOfContents = () => {
     active: boolean
   }) => {
     return (
-      <HashLink
-        smooth
-        to={`/#${slug}`}
+      // <HashLink
+      //   smooth
+      //   to={`/#${slug}`}
+      //   onClick={() => {
+      //     // setOnThisPageOpenStatus(false)
+      //     updateActiveItem(slug, level)
+      //   }}
+      // >
+      //   <Text sx={styles.item(level, active)}>{title}</Text>
+      // </HashLink>
+      <Link
+        href={`#${slug}`}
         onClick={() => {
           // setOnThisPageOpenStatus(false)
           updateActiveItem(slug, level)
+          // setActiveItem(({ item }) => ({
+          //   item: level === 1 ? slug : item,
+          //   subItem: level === 1 ? '' : slug,
+          // }))
         }}
       >
         <Text sx={styles.item(level, active)}>{title}</Text>
-      </HashLink>
+      </Link>
     )
   }
 
