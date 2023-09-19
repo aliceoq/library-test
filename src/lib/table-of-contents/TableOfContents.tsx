@@ -5,48 +5,39 @@ import { Box, Text } from '@vtex/brand-ui'
 import AnimateHeight from 'react-animate-height'
 
 import { removeHTML } from 'utils/string-utils'
-import { useHeadingObserver } from 'utils/hooks/useHeadingObserver'
-import { ActiveItem, Item } from './TableOfContents.types'
+import { Item } from './TableOfContents.types'
 
-import { LibraryContext } from 'utils/context/test'
+import { LibraryContext } from 'utils/context/libraryContext'
 
 import styles from './styles'
 
 const TableOfContents = () => {
-  // const [OnThisPageOpenStatus, setOnThisPageOpenStatus] = useState(false)
-  // const [activeItem, setActiveItem] = useState<ActiveItem>()
-  const [headings, setHeadings] = useState<Item[]>([])
-  const { activeItem, updateActiveItem } = useHeadingObserver(headings)
-
-  const { testValue } = useContext(LibraryContext)
+  const { headingItems, activeItem, setHeadingItems, setActiveItem } = useContext(LibraryContext)
 
   useEffect(() => {
-    document.querySelectorAll('h2, h3').forEach((heading) => {
-      // const toSlugify = childrenToString(headingProps.children)
-      const slug = heading.id
-      const item = {
-        title: removeHTML(heading.innerHTML).replace(':', ''),
-        slug: slug,
-      }
-
-      setHeadings((headings) => {
+    let headings: Item[] = []
+    if (!headings.length) {
+      document.querySelectorAll('h2, h3').forEach((heading) => {
+        // const toSlugify = childrenToString(headingProps.children)
+        const headingSlug = heading.id
+        const item = {
+          title: removeHTML(heading.innerHTML).replace(':', ''),
+          slug: headingSlug,
+        }
+  
         if (heading.tagName === 'H2') {
           return [...headings, { ...item, children: [] }]
         }
 
         const { title, slug, children } = headings[headings.length - 1]
-        return [
+        headings = [
           ...headings.slice(0, -1),
           { title, slug, children: [...children, item] },
         ]
       })
-    })
+      setHeadingItems(headings)
+    }
   }, [])
-
-  useEffect(() => {
-    console.log(testValue)
-  }, [testValue])
-
 
   const Item = ({
     title,
@@ -73,12 +64,10 @@ const TableOfContents = () => {
       <Link
         href={`#${slug}`}
         onClick={() => {
-          // setOnThisPageOpenStatus(false)
-          updateActiveItem(slug, level)
-          // setActiveItem(({ item }) => ({
-          //   item: level === 1 ? slug : item,
-          //   subItem: level === 1 ? '' : slug,
-          // }))
+          setActiveItem(({ item }) => ({
+            item: level === 1 ? slug : item,
+            subItem: level === 1 ? '' : slug,
+          }))
         }}
       >
         <Text sx={styles.item(level, active)}>{title}</Text>
@@ -88,7 +77,7 @@ const TableOfContents = () => {
 
   return (
     <Box sx={styles.itemsContainer} data-cy="table-of-contents">
-      {headings.map((item) => (
+      {headingItems.map((item) => (
         <Box key={item.slug}>
           <Item
             title={item.title}

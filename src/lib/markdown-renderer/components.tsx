@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Box, Flex } from '@vtex/brand-ui'
 import {
   ReactSVGPanZoom,
@@ -7,21 +7,53 @@ import {
 } from 'react-svg-pan-zoom'
 import mermaid from 'mermaid'
 import parse from 'html-react-parser'
+import { InView } from 'react-intersection-observer'
 
-import CodeBlock from '../../components/code-block'
-import OverviewCard from '../../components/overview-card'
-import YoutubeFrame from '../../components/youtube-frame'
-import Steps from '../../components/steps'
-import LightBox from '../../components/lightbox'
-import WhatsNextCard from '../../components/whats-next-card'
+import CodeBlock from 'components/code-block'
+import OverviewCard from 'components/overview-card'
+import YoutubeFrame from 'components/youtube-frame'
+import Steps from 'components/steps'
+import LightBox from 'components/lightbox'
+import WhatsNextCard from 'components/whats-next-card'
 
-import { childrenToString, slugify } from '../../utils/string-utils'
-import mermaidInit from '../../utils/mermaidInit'
+import { LibraryContext } from 'utils/context/libraryContext'
+import { childrenToString, slugify } from 'utils/string-utils'
+import mermaidInit from 'utils/mermaidInit'
 
-import { Component } from './MarkdownRenderer.types'
+import { Component, ObservableHeadingProps } from './MarkdownRenderer.types'
 import styles from './styles.module.css'
 
 mermaidInit()
+
+const ObservableHeading = ({
+  level,
+  onEnterView,
+  onLeaveView,
+  ...headingProps
+}: ObservableHeadingProps) => {
+  const [y, setY] = useState(Infinity)
+  const toSlugify = childrenToString(headingProps.children)
+  const slug = slugify(toSlugify)
+  return (
+    <InView
+      threshold={0.5}
+      className="heading"
+      rootMargin="0px 0px -80% 0px"
+      onChange={(inView, entry) => {
+        if (inView) onEnterView(slug)
+        else onLeaveView(slug, entry, y)
+
+        setY(entry.boundingClientRect.y)
+      }}
+    >
+      {level === 2 ? (
+        <h2 id={slug} className={styles.heading} {...headingProps} />
+      ) : (
+        <h3 id={slug} className={styles.heading} {...headingProps} />
+      )}
+    </InView>
+  )
+}
 
 const Callout = ({ node, icon, ...props }: Component) => {
   const blockquoteType: string = icon ? icon : 'info'
@@ -150,19 +182,47 @@ export default {
     return <CodeBlock {...props} />
   },
   h2: ({ node, ...props }: Component) => {
-    const toSlugify = childrenToString(props.children)
-    const slug = slugify(toSlugify)
+    const { activeItem, setActiveItem, goToPreviousItem } =
+      useContext(LibraryContext)
 
     return (
-      <h2 id={slug} className={styles.heading} {...props} />
+      <ObservableHeading
+        level={2}
+        onEnterView={(slug) => {
+          setActiveItem(({ item, subItem }) => ({
+            item: slug,
+            subItem: item !== slug ? '' : subItem,
+          }))
+        }}
+        onLeaveView={(slug, entry, y) => {
+          if (entry.boundingClientRect.y > y && activeItem.item === slug) {
+            goToPreviousItem()
+          }
+        }}
+        {...props}
+      />
     )
   },
   h3: ({ node, ...props }: Component) => {
-    const toSlugify = childrenToString(props.children)
-    const slug = slugify(toSlugify)
+    const { activeItem, setActiveItem, goToPreviousSubItem } =
+      useContext(LibraryContext)
 
     return (
-      <h3 id={slug} className={styles.heading} {...props} />
+      <ObservableHeading
+        level={3}
+        onEnterView={(slug) => {
+          setActiveItem(({ item }) => ({
+            item,
+            subItem: slug,
+          }))
+        }}
+        onLeaveView={(slug, entry, y) => {
+          if (entry.boundingClientRect.y > y && activeItem.subItem === slug) {
+            goToPreviousSubItem()
+          }
+        }}
+        {...props}
+      />
     )
   },
 }

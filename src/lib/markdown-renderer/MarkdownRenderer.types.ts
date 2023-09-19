@@ -9,3 +9,15 @@ export type Component = {
 export interface MarkdownRendererProps {
   serialized: MDXRemoteSerializeResult
 }
+
+export interface ObservableHeadingProps {
+  level: 2 | 3
+  onEnterView: (slug: string) => void
+  onLeaveView: (
+    slug: string,
+    entry: IntersectionObserverEntry,
+    y: number
+  ) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
+}
