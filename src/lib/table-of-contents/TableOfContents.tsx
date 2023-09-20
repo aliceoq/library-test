@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react'
 import Link from 'next/link.js'
+import { useRouter } from 'next/router.js'
 import { Box, Text } from '@vtex/brand-ui'
 import AnimateHeight from 'react-animate-height'
 
@@ -11,9 +12,11 @@ import { LibraryContext } from 'utils/context/libraryContext'
 import styles from './styles'
 
 const TableOfContents = () => {
+  const router = useRouter()
   const { headingItems, activeItem, setHeadingItems, setActiveItem } = useContext(LibraryContext)
 
   useEffect(() => {
+    console.log('ENTROUUUUUUUUU')
     let headings: Item[] = []
     if (!headings.length) {
       document.querySelectorAll('h2, h3').forEach((heading) => {
@@ -32,7 +35,7 @@ const TableOfContents = () => {
       })
       setHeadingItems(headings)
     }
-  }, [])
+  }, [router.asPath])
 
   const Item = ({
     title,
