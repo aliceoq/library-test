@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
-// import { HashLink } from 'react-router-hash-link'
+import { useContext, useEffect } from 'react'
 import Link from 'next/link.js'
 import { Box, Text } from '@vtex/brand-ui'
 import AnimateHeight from 'react-animate-height'
@@ -18,7 +17,6 @@ const TableOfContents = () => {
     let headings: Item[] = []
     if (!headings.length) {
       document.querySelectorAll('h2, h3').forEach((heading) => {
-        // const toSlugify = childrenToString(headingProps.children)
         const headingSlug = heading.id
         const item = {
           title: removeHTML(heading.innerHTML).replace(':', ''),
@@ -26,14 +24,11 @@ const TableOfContents = () => {
         }
   
         if (heading.tagName === 'H2') {
-          return [...headings, { ...item, children: [] }]
+          headings.push({ ...item, children: [] })
+        } else {
+          headings[headings.length - 1].children.push({ ...item })
         }
 
-        const { title, slug, children } = headings[headings.length - 1]
-        headings = [
-          ...headings.slice(0, -1),
-          { title, slug, children: [...children, item] },
-        ]
       })
       setHeadingItems(headings)
     }
@@ -51,16 +46,6 @@ const TableOfContents = () => {
     active: boolean
   }) => {
     return (
-      // <HashLink
-      //   smooth
-      //   to={`/#${slug}`}
-      //   onClick={() => {
-      //     // setOnThisPageOpenStatus(false)
-      //     updateActiveItem(slug, level)
-      //   }}
-      // >
-      //   <Text sx={styles.item(level, active)}>{title}</Text>
-      // </HashLink>
       <Link
         href={`#${slug}`}
         onClick={() => {
