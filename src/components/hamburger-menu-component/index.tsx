@@ -8,13 +8,15 @@ import {
 import styles from './styles'
 
 
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { SidebarContext } from 'utils/context/sidebar'
 import DocumentationCard from 'components/documentation-card'
 import SidebarSection, { SidebarSectionProps } from 'components/sidebar-section'
+import { updateOpenPage } from 'utils/sidebar-utils'
 
 
-const HamburgerMenuComponent = () => {
+const HamburgerMenuComponent = () => {  
+  const context = useContext(SidebarContext)
   const {
     sidebarDataMaster,
     sidebarSectionHidden,
@@ -22,7 +24,9 @@ const HamburgerMenuComponent = () => {
     setActiveSidebarTab,
     setSidebarSectionHidden,
     sidebarSections,
-  } = useContext(SidebarContext)
+  } = context
+
+  updateOpenPage({context})
 
   return (
     <Header.ActionButton>

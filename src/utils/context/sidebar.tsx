@@ -3,7 +3,7 @@ import { createContext, useState } from 'react'
 import { SWRConfig } from 'swr'
 import { Section } from '../types'
 
-type ContextType = {
+export type SidebarContextType = {
   isEditorPreview: boolean
   sidebarSectionHidden: boolean
   activeSectionName: string
@@ -26,7 +26,7 @@ type ContextType = {
   setSidebarSections: Dispatch<SetStateAction<Section[][]>>
 }
 
-export const SidebarContext = createContext<ContextType>({
+export const SidebarContext = createContext<SidebarContextType>({
   isEditorPreview: false,
   sidebarSectionHidden: false,
   activeSectionName: '',
@@ -47,7 +47,7 @@ export const SidebarContext = createContext<ContextType>({
   setSidebarSections: () => undefined,
 })
 
-interface Props extends Partial<ContextType> {
+interface Props extends Partial<SidebarContextType> {
   children: ReactNode
   fallback?: any //eslint-disable-line
   sections: Section[][]
