@@ -20,8 +20,8 @@ const HamburgerMenuComponent = () => {
   const {
     sidebarDataMaster,
     sidebarSectionHidden,
-    activeSidebarTab,
-    setActiveSidebarTab,
+    activeSectionName,
+    setActiveSectionName,
     setSidebarSectionHidden,
     sidebarSections,
   } = context
@@ -60,13 +60,13 @@ const HamburgerMenuComponent = () => {
                               <IconCaret direction="right" size={32} />
                             )}
                             sx={
-                              activeSidebarTab === card.title &&
+                              activeSectionName === card.title &&
                               !sidebarSectionHidden
                                 ? styles.arrowIconActive
                                 : styles.arrowIcon
                             }
                             onClick={() => {
-                              setActiveSidebarTab(card.title)
+                              setActiveSectionName(card.title)
                               setSidebarSectionHidden(false)
                             }}
                           />
@@ -79,17 +79,17 @@ const HamburgerMenuComponent = () => {
             </Box>
             <Box
               className={
-                sidebarSectionHidden || !activeSidebarTab ? '' : 'menuHidden'
+                sidebarSectionHidden || !activeSectionName ? '' : 'menuHidden'
               }
               sx={styles.sideMenuContainer}
             >
-              {activeSidebarTab ? (
+              {activeSectionName ? (
                 <SidebarSection
                   isHamburgerMenu={true}
                   {...(Array.isArray(sidebarDataMaster)
                     ? sidebarDataMaster?.find(
                         (section: SidebarSectionProps) =>
-                          section.documentation === activeSidebarTab
+                          section.documentation === activeSectionName
                       )
                     : null)}
                 />

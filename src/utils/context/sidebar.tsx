@@ -8,7 +8,6 @@ export type SidebarContextType = {
   sidebarSectionHidden: boolean
   activeSectionName: string
   activeSidebarElement: string
-  activeSidebarTab: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   sidebarDataMaster: any
   sidebarElementStatus: Map<string, boolean>
@@ -18,7 +17,6 @@ export type SidebarContextType = {
   setSidebarSectionHidden: Dispatch<SetStateAction<boolean>>
   setActiveSectionName: Dispatch<SetStateAction<string>>
   setActiveSidebarElement: Dispatch<SetStateAction<string>>
-  setActiveSidebarTab: Dispatch<SetStateAction<string>>
   toggleSidebarElementStatus: (title: string) => void
   openSidebarElement: (title: string) => void
   closeSidebarElements: (parentsArray: string[]) => void
@@ -31,7 +29,6 @@ export const SidebarContext = createContext<SidebarContextType>({
   sidebarSectionHidden: false,
   activeSectionName: '',
   activeSidebarElement: '',
-  activeSidebarTab: '',
   sidebarDataMaster: {},
   setIsEditorPreview: () => undefined,
   sidebarElementStatus: new Map(),
@@ -39,7 +36,6 @@ export const SidebarContext = createContext<SidebarContextType>({
   setSidebarSectionHidden: () => undefined,
   setActiveSectionName: () => undefined,
   setActiveSidebarElement: () => undefined,
-  setActiveSidebarTab: () => undefined,
   toggleSidebarElementStatus: () => undefined,
   openSidebarElement: () => undefined,
   closeSidebarElements: () => undefined,
@@ -61,7 +57,6 @@ const SidebarContextProvider = ({ children, ...props }: Props) => {
   )
   const [sidebarSectionHidden, setSidebarSectionHidden] = useState(false)
   const [activeSidebarElement, setActiveSidebarElement] = useState('')
-  const [activeSidebarTab, setActiveSidebarTab] = useState('')
   const [sidebarElementStatus, setSidebarElementStatus] = useState(new Map())
   const [sidebarDataMaster, setSidebarDataMaster] = useState(props.fallback)
   const [isEditorPreview, setIsEditorPreview] = useState(props.isPreview)
@@ -114,12 +109,10 @@ const SidebarContextProvider = ({ children, ...props }: Props) => {
         sidebarSectionHidden,
         activeSectionName,
         activeSidebarElement,
-        activeSidebarTab,
         sidebarElementStatus,
         setActiveSectionName,
         setSidebarSectionHidden,
         setActiveSidebarElement,
-        setActiveSidebarTab,
         toggleSidebarElementStatus,
         openSidebarElement,
         closeSidebarElements,
