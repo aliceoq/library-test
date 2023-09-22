@@ -14,8 +14,11 @@ import DocumentationCard from 'components/documentation-card'
 import SidebarSection, { SidebarSectionProps } from 'components/sidebar-section'
 import { updateOpenPage } from 'utils/sidebar-utils'
 
+interface HamburgerMenuComponentProps {
+  parentsArray?: string[]
+}
 
-const HamburgerMenuComponent = () => {  
+const HamburgerMenuComponent = ({parentsArray = []}: HamburgerMenuComponentProps) => {  
   const context = useContext(SidebarContext)
   const {
     sidebarDataMaster,
@@ -26,7 +29,7 @@ const HamburgerMenuComponent = () => {
     sidebarSections,
   } = context
 
-  updateOpenPage({context})
+  updateOpenPage({parentsArray, context})
 
   return (
     <Header.ActionButton>

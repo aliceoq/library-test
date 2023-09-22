@@ -11,6 +11,7 @@ interface Props {
 }
 
 const HamburgerMenu = ({
+  parentsArray,
   sectionSelected,
   sections,
   navigation,
@@ -23,7 +24,7 @@ const HamburgerMenu = ({
       sectionSelected={sectionSelected ?? ''}
       fallback={navigation}
     >
-      <HamburgerMenuComponent />
+      <HamburgerMenuComponent parentsArray={parentsArray}/>
     </SidebarContextProvider>
   )
 }
