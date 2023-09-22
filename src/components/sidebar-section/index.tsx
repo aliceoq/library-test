@@ -5,11 +5,11 @@ import styles from './styles'
 import { SidebarElement } from '../sidebar-elements'
 import SectionFilter from '../sidebar-section-filter'
 import SideBarElements from '../sidebar-elements'
-import { SidebarContext } from 'utils/context/sidebar'
 import SearchIcon from 'components/icons/search-icon'
 import SideBarToggleIcon from 'components/icons/sidebar-toggle-icon'
 import ArrowLeftIcon from 'components/icons/arrow-left-icon'
 import { getIcon } from 'utils/sidebar-utils'
+import { LibraryContext } from 'utils/context/libraryContext'
 
 export interface SidebarSectionProps {
   documentation: string
@@ -25,9 +25,8 @@ const SidebarSection = ({
   isHamburgerMenu = false,
 }: SidebarSectionProps) => {
   const [searchValue, setSearchValue] = useState('')
-  const { sidebarSectionHidden, setSidebarSectionHidden, sidebarSections } =
-    useContext(SidebarContext)
-  const { isEditorPreview } = useContext(SidebarContext)
+  const { isEditorPreview, sidebarSectionHidden, setSidebarSectionHidden, sidebarSections } =
+    useContext(LibraryContext)
   const [methodFilterList, setMethodFilterList] = useState([
     { name: 'POST', active: false },
     { name: 'GET', active: false },

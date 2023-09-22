@@ -1,24 +1,46 @@
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { Item } from 'lib/table-of-contents/TableOfContents.types'
+import { Section } from 'utils/types'
+import { SWRConfig } from 'swr'
 
 interface Props extends Partial<ContextType> {
   children: ReactNode
+  fallback?: any
+  sections: Section[][]
+  isPreview: boolean
+  sectionSelected: string
 }
 
-type ContextType = {
+export type ContextType = {
   headingItems: Item[]
   setHeadingItems: Dispatch<SetStateAction<Item[]>>
   activeItem: ActiveItem
   setActiveItem: Dispatch<SetStateAction<ActiveItem>>
   goToPreviousItem: () => void
   goToPreviousSubItem: () => void
+  isEditorPreview: boolean
+  sidebarSectionHidden: boolean
+  activeSectionName: string
+  activeSidebarElement: string
+  sidebarDataMaster: any
+  sidebarElementStatus: Map<string, boolean>
+  setSidebarDataMaster: Dispatch<SetStateAction<any>>
+  setIsEditorPreview: Dispatch<SetStateAction<boolean>>
+  setSidebarSectionHidden: Dispatch<SetStateAction<boolean>>
+  setActiveSectionName: Dispatch<SetStateAction<string>>
+  setActiveSidebarElement: Dispatch<SetStateAction<string>>
+  toggleSidebarElementStatus: (title: string) => void
+  openSidebarElement: (title: string) => void
+  closeSidebarElements: (parentsArray: string[]) => void
+  sidebarSections: Section[][]
+  setSidebarSections: Dispatch<SetStateAction<Section[][]>>
 }
 
 type ActiveItem = {
   item: string
   subItem: string
-}
+} 
 
 export const LibraryContext = createContext<ContextType>({
   headingItems: [],
@@ -30,6 +52,22 @@ export const LibraryContext = createContext<ContextType>({
   setActiveItem: () => undefined,
   goToPreviousItem: () => undefined,
   goToPreviousSubItem: () => undefined,
+  isEditorPreview: false,
+  sidebarSectionHidden: false,
+  activeSectionName: '',
+  activeSidebarElement: '',
+  sidebarDataMaster: {},
+  setIsEditorPreview: () => undefined,
+  sidebarElementStatus: new Map(),
+  setSidebarDataMaster: () => undefined,
+  setSidebarSectionHidden: () => undefined,
+  setActiveSectionName: () => undefined,
+  setActiveSidebarElement: () => undefined,
+  toggleSidebarElementStatus: () => undefined,
+  openSidebarElement: () => undefined,
+  closeSidebarElements: () => undefined,
+  sidebarSections: [],
+  setSidebarSections: () => undefined,
 })
 
 const LibraryContextProvider = ({ children, ...props }: Props) => {
@@ -38,6 +76,55 @@ const LibraryContextProvider = ({ children, ...props }: Props) => {
     item: '',
     subItem: '',
   })
+
+  const [activeSectionName, setActiveSectionName] = useState(
+    props.sectionSelected
+  )
+  const [sidebarSectionHidden, setSidebarSectionHidden] = useState(false)
+  const [activeSidebarElement, setActiveSidebarElement] = useState('')
+  const [sidebarElementStatus, setSidebarElementStatus] = useState(new Map())
+  const [sidebarDataMaster, setSidebarDataMaster] = useState(props.fallback)
+  const [isEditorPreview, setIsEditorPreview] = useState(props.isPreview)
+  const [sidebarSections, setSidebarSections] = useState(props.sections)
+
+  useEffect(() => {
+    setSidebarDataMaster(props.fallback)
+  }, [props.fallback])
+
+  useEffect(() => {
+    if (props.sectionSelected === '') setSidebarSectionHidden(true)
+    else if (props.sectionSelected !== activeSectionName)
+      setActiveSectionName(props.sectionSelected)
+  }, [props.sectionSelected])
+
+  const { fallback } = props
+
+  const toggleSidebarElementStatus = (title: string) => {
+    setSidebarElementStatus((sidebarElementStatus) => {
+      const open =
+        sidebarElementStatus.has(title) === false
+          ? true
+          : !sidebarElementStatus.get(title)
+
+      return new Map(sidebarElementStatus.set(title, open))
+    })
+  }
+
+  const closeSidebarElements = (parentsArray: string[]) => {
+    sidebarElementStatus.forEach((_value, key) => {
+      if (!parentsArray.includes(key)) {
+        setSidebarElementStatus((sidebarElementStatus) => {
+          return new Map(sidebarElementStatus.set(key, false))
+        })
+      }
+    })
+  }
+
+  const openSidebarElement = (title: string) => {
+    setSidebarElementStatus((sidebarElementStatus) => {
+      return new Map(sidebarElementStatus.set(title, true))
+    })
+  }
 
   const goToPreviousItem = () => {
     setActiveItem(({ item, subItem }) => {
@@ -82,10 +169,34 @@ const LibraryContextProvider = ({ children, ...props }: Props) => {
         setActiveItem,
         goToPreviousItem,
         goToPreviousSubItem,
+        isEditorPreview,
+        setIsEditorPreview,
+        sidebarSectionHidden,
+        activeSectionName,
+        activeSidebarElement,
+        sidebarElementStatus,
+        setActiveSectionName,
+        setSidebarSectionHidden,
+        setActiveSidebarElement,
+        toggleSidebarElementStatus,
+        openSidebarElement,
+        closeSidebarElements,
+        sidebarDataMaster,
+        setSidebarDataMaster,
+        sidebarSections,
+        setSidebarSections,
         ...props,
       }}
     >
-      {children}
+      <SWRConfig
+        value={{
+          fallback: {
+            '/api/navigation': fallback ? fallback : [],
+          },
+        }}
+      >
+        {children}
+      </SWRConfig>
     </LibraryContext.Provider>
   )
 }

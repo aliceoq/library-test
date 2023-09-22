@@ -2,7 +2,7 @@ import { Section } from "./types";
 import { flattenJSON, getKeyByEndpoint, getParents } from "./navigation-utils";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { SidebarContextType } from "./context/sidebar";
+import { ContextType } from "./context/libraryContext";
 
 export const getIcon = (doc: string, sections: Section[][]) => {
   for (const section of sections) {
@@ -12,7 +12,7 @@ export const getIcon = (doc: string, sections: Section[][]) => {
 
 interface updateOpenPageProps {
   parentsArray?: string[]
-  context: SidebarContextType
+  context: ContextType
   setExpandDelayStatus?: Dispatch<SetStateAction<boolean>>
 }
 export const updateOpenPage = ({ parentsArray = [], context, setExpandDelayStatus }: updateOpenPageProps) => {

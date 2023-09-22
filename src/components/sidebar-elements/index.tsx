@@ -13,8 +13,8 @@ import MethodCategory from 'components/method-category'
 
 import { styleByLevelNormal, textStyle } from './functions'
 import styles from './styles'
-import { SidebarContext } from 'utils/context/sidebar'
 import { MethodType } from 'utils/types'
+import { LibraryContext } from 'utils/context/libraryContext'
 
 export interface SidebarElement {
   name: string
@@ -34,12 +34,12 @@ export interface SidebarProps {
 
 const SidebarElements = ({ slugPrefix, items, subItemLevel }: SidebarProps) => {
   const {
+    isEditorPreview,
     activeSidebarElement,
     sidebarElementStatus,
     toggleSidebarElementStatus,
     sidebarDataMaster,
-  } = useContext(SidebarContext)
-  const { isEditorPreview } = useContext(SidebarContext)
+  } = useContext(LibraryContext)
   const router = useRouter()
 
   const handleClick = (
