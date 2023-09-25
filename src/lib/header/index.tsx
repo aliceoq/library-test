@@ -15,7 +15,7 @@ import LongArrowIcon from 'components/icons/long-arrow-icon'
 
 import { getFeedbackURL } from 'utils/get-url'
 
-import AnnouncementBar from 'components/announcement-bar'
+import AnnouncementBar, { AnnouncementBarProps } from 'components/announcement-bar'
 
 import styles from './styles'
 import { LibraryContext } from 'utils/context/libraryContext'
@@ -24,16 +24,15 @@ import { Section } from 'utils/types'
 
 interface Props {
   isEditor: boolean
+  announcements?: AnnouncementBarProps[]
   Icon: (props: IconProps) => JSX.Element
   editorSections: Section[][]
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Header = ({ isEditor, Icon, editorSections }: Props) => {
+const Header = ({ isEditor, Icon, editorSections, announcements = [] }: Props) => {
   const router = useRouter()
-  const isBranchPreview = router.isPreview
-
-  const { branchPreview, sidebarSections } = useContext(LibraryContext)
+  const { sidebarSections } = useContext(LibraryContext)
 
   const lastScroll = useRef(0)
   const modalOpen = useRef(false)
@@ -93,29 +92,11 @@ const Header = ({ isEditor, Icon, editorSections }: Props) => {
 
   return (
     <Box ref={headerElement} sx={styles.headerContainer}>
-      {!isBranchPreview ? (
-        <div></div>
-      ) : (
-        // To create an announcement at the topbar, un-comment this code, and change the copy and links.
-        // <AnnouncementBar
-        //   closable={true}
-        //   type="new"
-        //   label="📢 We want to know more about you and how you use our docs. "
-        //   action={{
-        //     button: 'Fill in our survey! It takes less than 5 minutes.',
-        //     href: 'https://forms.gle/5EvnahjuwQqwumDd9',
-        //   }}
-        // ></AnnouncementBar>
-        <AnnouncementBar
-          closable={false}
-          type="warning"
-          label={`🚧 You are currently using branch ${branchPreview} in preview mode. This content may differ from the published version.`}
-          action={{
-            button: 'EXIT PREVIEW MODE',
-            href: '/api/disable-preview',
-          }}
-        ></AnnouncementBar>
-      )}
+      <>
+        {announcements.map((announcement) => (
+          <AnnouncementBar {...announcement} />
+        ))}
+      </>
       <HeaderBrand sx={styles.headerBrand}>
         <VtexLink
           aria-label="Go back to Home"

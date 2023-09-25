@@ -4,7 +4,7 @@ import { useDialogState, Dialog } from 'reakit/Dialog'
 import { Box, Button, Text, SxProps, Link } from '@vtex/brand-ui'
 import { IconClose } from './IconClose'
 
-interface AnnouncementBarProps extends PropsWithChildren<SxProps> {
+export interface AnnouncementBarProps extends PropsWithChildren<SxProps> {
   type: string
   label?: string
   closable: boolean

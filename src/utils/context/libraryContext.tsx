@@ -35,8 +35,6 @@ export type ContextType = {
   closeSidebarElements: (parentsArray: string[]) => void
   sidebarSections: Section[][]
   setSidebarSections: Dispatch<SetStateAction<Section[][]>>
-  branchPreview: string
-  setBranchPreview: Dispatch<SetStateAction<string>>
 }
 
 type ActiveItem = {
@@ -70,8 +68,6 @@ export const LibraryContext = createContext<ContextType>({
   closeSidebarElements: () => undefined,
   sidebarSections: [],
   setSidebarSections: () => undefined,
-  branchPreview: '',
-  setBranchPreview: () => undefined,
 })
 
 const LibraryContextProvider = ({ children, ...props }: Props) => {
@@ -90,7 +86,6 @@ const LibraryContextProvider = ({ children, ...props }: Props) => {
   const [sidebarDataMaster, setSidebarDataMaster] = useState(props.fallback)
   const [isEditorPreview, setIsEditorPreview] = useState(props.isPreview)
   const [sidebarSections, setSidebarSections] = useState(props.sections)
-  const [branchPreview, setBranchPreview] = useState('')
 
   useEffect(() => {
     setSidebarDataMaster(props.fallback)
@@ -190,8 +185,6 @@ const LibraryContextProvider = ({ children, ...props }: Props) => {
         setSidebarDataMaster,
         sidebarSections,
         setSidebarSections,
-        branchPreview,
-        setBranchPreview,
         ...props,
       }}
     >
