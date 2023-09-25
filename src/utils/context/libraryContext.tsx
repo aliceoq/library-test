@@ -59,7 +59,7 @@ export const LibraryContext = createContext<ContextType>({
   sidebarDataMaster: {},
   setIsEditorPreview: () => undefined,
   sidebarElementStatus: new Map(),
-  setSidebarDataMaster: () => undefined,
+  setSidebarDataMaster: (_: any) => undefined,
   setSidebarSectionHidden: () => undefined,
   setActiveSectionName: () => undefined,
   setActiveSidebarElement: () => undefined,
