@@ -26,11 +26,12 @@ interface Props {
   isEditor: boolean
   announcements?: AnnouncementBarProps[]
   Icon: (props: IconProps) => JSX.Element
-  editorSections: Section[][]
+  editorSections?: Section[][]
+  showHeaderLinks?: boolean
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Header = ({ isEditor, Icon, editorSections, announcements = [] }: Props) => {
+const Header = ({ isEditor, Icon, editorSections = [], announcements = [], showHeaderLinks = false }: Props) => {
   const router = useRouter()
   const { sidebarSections } = useContext(LibraryContext)
 
@@ -106,12 +107,12 @@ const Header = ({ isEditor, Icon, editorSections, announcements = [] }: Props) =
           <Icon sx={styles.logoSize} />
         </VtexLink>
 
-        {/* <Box sx={styles.searchContainer}>
-          <SearchInput />
-        </Box> */}
+        <Box sx={styles.searchContainer}>
+          {/* <SearchInput /> */}
+        </Box>
 
         <HeaderBrand.RightLinks sx={styles.rightLinks}>
-          <Flex
+          {!showHeaderLinks && <Flex
             sx={styles.dropdownContainer}
             onMouseOver={() => setShowDropdown(true)}
             onMouseLeave={() => setShowDropdown(false)}
@@ -130,7 +131,19 @@ const Header = ({ isEditor, Icon, editorSections, announcements = [] }: Props) =
             </Flex>
 
             {showDropdown && <DropdownMenu isEditor={isEditor} sections={sidebarSections} editorSections={editorSections}/>}
-          </Flex>
+          </Flex>}
+
+          {showHeaderLinks &&
+            sidebarSections.flat().map((section) => (
+              <VtexLink
+                sx={styles.rightLinksItem}
+                href={section.link}
+                target="_blank"
+              >
+                <Text sx={styles.rightButtonsText}>{section.title}</Text>
+              </VtexLink>
+            ))
+          }
 
           <VtexLink
             sx={styles.rightLinksItem}
