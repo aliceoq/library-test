@@ -139,6 +139,7 @@ const Header = ({ isEditor, Icon, editorSections = [], announcements = [], showH
                 sx={styles.rightLinksItem}
                 href={section.link}
                 target="_blank"
+                key={section.title}
               >
                 <Text sx={styles.rightButtonsText}>{section.title}</Text>
               </VtexLink>
