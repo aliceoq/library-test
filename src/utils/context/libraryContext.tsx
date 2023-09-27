@@ -10,6 +10,7 @@ interface Props extends Partial<ContextType> {
   sections: Section[][]
   isPreview: boolean
   sectionSelected: string
+  searchClient: any
 }
 
 export type ContextType = {
@@ -35,6 +36,7 @@ export type ContextType = {
   closeSidebarElements: (parentsArray: string[]) => void
   sidebarSections: Section[][]
   setSidebarSections: Dispatch<SetStateAction<Section[][]>>
+  searchClient: any
 }
 
 type ActiveItem = {
@@ -68,6 +70,7 @@ export const LibraryContext = createContext<ContextType>({
   closeSidebarElements: () => undefined,
   sidebarSections: [],
   setSidebarSections: () => undefined,
+  searchClient: undefined
 })
 
 const LibraryContextProvider = ({ children, ...props }: Props) => {

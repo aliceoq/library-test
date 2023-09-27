@@ -21,6 +21,7 @@ import styles from './styles'
 import { LibraryContext } from 'utils/context/libraryContext'
 import HamburgerMenu from 'lib/hamburger-menu'
 import { Section } from 'utils/types'
+import SearchInput from 'components/search-input'
 
 interface Props {
   isEditor: boolean
@@ -108,7 +109,7 @@ const Header = ({ isEditor, Icon, editorSections = [], announcements = [], showH
         </VtexLink>
 
         <Box sx={styles.searchContainer}>
-          {/* <SearchInput /> */}
+          <SearchInput />
         </Box>
 
         <HeaderBrand.RightLinks sx={styles.rightLinks}>

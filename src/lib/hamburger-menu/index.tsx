@@ -12,12 +12,13 @@ import DocumentationCard from 'components/documentation-card'
 import SidebarSection, { SidebarSectionProps } from 'components/sidebar-section'
 import { updateOpenPage } from 'utils/sidebar-utils'
 import { LibraryContext } from 'utils/context/libraryContext'
+import SearchInput from 'components/search-input'
 
-interface HamburgerMenuComponentProps {
+interface HamburgerMenuProps {
   parentsArray?: string[]
 }
 
-const HamburgerMenuComponent = ({parentsArray = []}: HamburgerMenuComponentProps) => {  
+const HamburgerMenu = ({parentsArray = []}: HamburgerMenuProps) => {  
   const context = useContext(LibraryContext)
   const {
     sidebarDataMaster,
@@ -36,9 +37,9 @@ const HamburgerMenuComponent = ({parentsArray = []}: HamburgerMenuComponentProps
         <VtexHamburgerMenu.Menu sx={styles.innerHambugerContainer}>
           <Box sx={styles.menuContainer}>
             <Box sx={styles.cardContainer}>
-              {/*<Box sx={styles.hamburgerSearchContainer}>
+              <Box sx={styles.hamburgerSearchContainer}>
                 <SearchInput />
-              </Box>*/}
+              </Box>
               {sidebarSections.map((section, id) => {
                 return (
                   <>
@@ -104,4 +105,4 @@ const HamburgerMenuComponent = ({parentsArray = []}: HamburgerMenuComponentProps
   )
 }
 
-export default HamburgerMenuComponent
+export default HamburgerMenu
