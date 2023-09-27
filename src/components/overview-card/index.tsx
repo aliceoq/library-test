@@ -2,8 +2,7 @@ import React from 'react'
 import styles from './styles'
 import { Flex, Box, IconProps } from '@vtex/brand-ui'
 import * as Icons from './icons'
-
-export type IconComponent = (props: IconProps) => JSX.Element
+import { IconComponent } from 'utils/types'
 
 interface IconsI {
   name: string

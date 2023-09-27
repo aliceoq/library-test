@@ -1,5 +1,4 @@
 import { IconProps } from '@vtex/brand-ui'
-import { IconComponent } from 'components/overview-card'
 
 export type Section = {
   link: string
@@ -15,3 +14,5 @@ export type DataElement = {
   Icon: IconComponent
   description: string
 }
+
+export type IconComponent = (props: IconProps) => JSX.Element

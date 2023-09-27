@@ -12,9 +12,10 @@ import {
 import aa from 'search-insights'
 import { Box, Flex, IconCaret, Text } from '@vtex/brand-ui'
 
-import { getBreadcrumbs, getRelativeURL } from 'utils/search-utils'
+import { getBreadcrumbs, getIcon, getRelativeURL } from 'utils/search-utils'
 import CustomHighlight from './customHighlight'
 import styles from './styles'
+
 interface HitProps {
   hit: Hit
   insights: WrappedInsightsClient
@@ -26,7 +27,7 @@ interface HitsBoxProps extends StateResultsProvided {
 
 const Hit = ({ hit, insights }: HitProps) => {
   const breadcrumbsList = getBreadcrumbs(hit)
-  // const DocIcon = getIcon(hit.doctype)
+  const DocIcon = getIcon(hit.doctype)
   return (
     <Link href={getRelativeURL(hit.url)} legacyBehavior>
       <a
@@ -39,7 +40,7 @@ const Hit = ({ hit, insights }: HitProps) => {
       >
         <Box sx={styles.hitBox}>
           <Flex>
-            {/* DocIcon && <DocIcon className="hit-icon" sx={styles.hitIcon} /> */}
+            {DocIcon && <DocIcon className="hit-icon" sx={styles.hitIcon} />}
             <Text sx={styles.hitContent}>
               <CustomHighlight hit={hit} attribute="content" />
             </Text>
