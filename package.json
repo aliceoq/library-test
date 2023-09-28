@@ -10,7 +10,8 @@
   "description": "",
   "repository": "https://github.com/RobsonOlv/library-test",
   "scripts": {
-    "build": "rm -rf ./dist && tsup"
+    "build": "rm -rf ./dist && tsup",
+    "lint": "npx eslint . --ext .ts,.tsx"
   },
   "author": "",
   "license": "MIT",
@@ -35,11 +36,20 @@
   "devDependencies": {
     "@types/react": "^18.2.2",
     "@types/react-instantsearch-dom": "^6.12.3",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
     "@types/react-router-hash-link": "^2.4.6",
     "@types/react-svg-pan-zoom": "^3.3.5",
+    "@vtex/prettier-config": "^1.0.0",
     "autoprefixer": "^10.4.15",
     "esbuild-sass-plugin": "^2.15.0",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "13.0.6",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-vtex-react": "^8.2.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "postcss": "^8.4.29",
+    "prettier": "^2.5.1",
     "tailwindcss": "^3.3.3",
     "tslib": "^2.6.2",
     "tsup": "^7.2.0",
