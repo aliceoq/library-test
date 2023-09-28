@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react"
-import { ActiveItem, Item } from "lib/table-of-contents/TableOfContents.types"
+import { useEffect, useRef, useState } from 'react'
+import { ActiveItem, Item } from 'lib/table-of-contents/TableOfContents.types'
 
 export function useHeadingObserver(headings: Item[]) {
   const [y, setY] = useState(Infinity)
@@ -28,22 +28,20 @@ export function useHeadingObserver(headings: Item[]) {
   }
 
   const updateActiveItem = (slug: string, level: number) => {
-    setActiveItem(({item}) => ({
+    setActiveItem(({ item }) => ({
       item: level === 1 ? slug : item,
       subItem: level === 1 ? '' : slug,
     }))
   }
 
-  
-  
   useEffect(() => {
     const handleObsever = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         const currentY = entry.target.getBoundingClientRect().y
         if (entry?.isIntersecting) {
-          const slug = entry.target.id 
+          const slug = entry.target.id
           setY(currentY)
-          if(entry.target.tagName === 'H2') {
+          if (entry.target.tagName === 'H2') {
             setActiveItem(({ item, subItem }) => ({
               item: slug,
               subItem: item !== slug ? '' : subItem,
@@ -59,12 +57,13 @@ export function useHeadingObserver(headings: Item[]) {
         }
       })
     }
-  
+
     observer.current = new IntersectionObserver(handleObsever, {
-      rootMargin: "0px 0px -80% 0px", threshold: 0.5}
-    )
-  
-    const elements = document.querySelectorAll("h2, h3")
+      rootMargin: '0px 0px -80% 0px',
+      threshold: 0.5,
+    })
+
+    const elements = document.querySelectorAll('h2, h3')
     elements.forEach((elem) => observer.current?.observe(elem))
     return () => observer.current?.disconnect()
   }, [])

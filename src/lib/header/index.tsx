@@ -15,7 +15,9 @@ import LongArrowIcon from 'components/icons/long-arrow-icon'
 
 import { getFeedbackURL } from 'utils/get-url'
 
-import AnnouncementBar, { AnnouncementBarProps } from 'components/announcement-bar'
+import AnnouncementBar, {
+  AnnouncementBarProps,
+} from 'components/announcement-bar'
 
 import styles from './styles'
 import { LibraryContext } from 'utils/context/libraryContext'
@@ -32,7 +34,13 @@ interface Props {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Header = ({ isEditor, Icon, editorSections = [], announcements = [], showHeaderLinks = false }: Props) => {
+const Header = ({
+  isEditor,
+  Icon,
+  editorSections = [],
+  announcements = [],
+  showHeaderLinks = false,
+}: Props) => {
   const router = useRouter()
   const { sidebarSections } = useContext(LibraryContext)
 
@@ -113,26 +121,34 @@ const Header = ({ isEditor, Icon, editorSections = [], announcements = [], showH
         </Box>
 
         <HeaderBrand.RightLinks sx={styles.rightLinks}>
-          {!showHeaderLinks && <Flex
-            sx={styles.dropdownContainer}
-            onMouseOver={() => setShowDropdown(true)}
-            onMouseLeave={() => setShowDropdown(false)}
-          >
-            <Flex sx={styles.dropdownButton(showDropdown)}>
-              <GridIcon />
-              {!isEditor ? (
-                <Text sx={styles.rightButtonsText} data-cy="docs-dropdown">
-                  Documentation
-                </Text>
-              ) : (
-                <Text sx={styles.rightButtonsText} data-cy="docs-dropdown">
-                  Admin tools
-                </Text>
+          {!showHeaderLinks && (
+            <Flex
+              sx={styles.dropdownContainer}
+              onMouseOver={() => setShowDropdown(true)}
+              onMouseLeave={() => setShowDropdown(false)}
+            >
+              <Flex sx={styles.dropdownButton(showDropdown)}>
+                <GridIcon />
+                {!isEditor ? (
+                  <Text sx={styles.rightButtonsText} data-cy="docs-dropdown">
+                    Documentation
+                  </Text>
+                ) : (
+                  <Text sx={styles.rightButtonsText} data-cy="docs-dropdown">
+                    Admin tools
+                  </Text>
+                )}
+              </Flex>
+
+              {showDropdown && (
+                <DropdownMenu
+                  isEditor={isEditor}
+                  sections={sidebarSections}
+                  editorSections={editorSections}
+                />
               )}
             </Flex>
-
-            {showDropdown && <DropdownMenu isEditor={isEditor} sections={sidebarSections} editorSections={editorSections}/>}
-          </Flex>}
+          )}
 
           {showHeaderLinks &&
             sidebarSections.flat().map((section) => (
@@ -144,8 +160,7 @@ const Header = ({ isEditor, Icon, editorSections = [], announcements = [], showH
               >
                 <Text sx={styles.rightButtonsText}>{section.title}</Text>
               </VtexLink>
-            ))
-          }
+            ))}
 
           <VtexLink
             sx={styles.rightLinksItem}
@@ -153,9 +168,7 @@ const Header = ({ isEditor, Icon, editorSections = [], announcements = [], showH
             target="_blank"
           >
             <LongArrowIcon />
-            <Text sx={styles.rightButtonsText}>
-              Feedback
-            </Text>
+            <Text sx={styles.rightButtonsText}>Feedback</Text>
           </VtexLink>
         </HeaderBrand.RightLinks>
         <HamburgerMenu />

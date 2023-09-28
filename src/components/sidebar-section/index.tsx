@@ -25,8 +25,12 @@ const SidebarSection = ({
   isHamburgerMenu = false,
 }: SidebarSectionProps) => {
   const [searchValue, setSearchValue] = useState('')
-  const { isEditorPreview, sidebarSectionHidden, setSidebarSectionHidden, sidebarSections } =
-    useContext(LibraryContext)
+  const {
+    isEditorPreview,
+    sidebarSectionHidden,
+    setSidebarSectionHidden,
+    sidebarSections,
+  } = useContext(LibraryContext)
   const [methodFilterList, setMethodFilterList] = useState([
     { name: 'POST', active: false },
     { name: 'GET', active: false },

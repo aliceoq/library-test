@@ -1,17 +1,17 @@
 import { Hit } from 'react-instantsearch-core'
 
-import APIGuidesIcon from "components/icons/api-guides-icon";
-import APIReferenceIcon from "components/icons/api-reference-icon";
-import AppDevelopmentIcon from "components/icons/app-development-icon";
-import ReleaseNotesIcon from "components/icons/release-notes-icon";
-import StorefrontDevelopmentIcon from "components/icons/storefront-development-icon";
-import VTEXIOAppsIcon from "components/icons/vtex-io-apps-icon";
-import { IconComponent } from "./types";
-import AddedIcon from 'components/icons/added-icon';
-import DeprecatedIcon from 'components/icons/deprecated-icon';
-import FixedIcon from 'components/icons/fixed-icon';
-import ImprovedIcon from 'components/icons/improved-icon';
-import RemovedIcon from 'components/icons/removed-icon';
+import APIGuidesIcon from 'components/icons/api-guides-icon'
+import APIReferenceIcon from 'components/icons/api-reference-icon'
+import AppDevelopmentIcon from 'components/icons/app-development-icon'
+import ReleaseNotesIcon from 'components/icons/release-notes-icon'
+import StorefrontDevelopmentIcon from 'components/icons/storefront-development-icon'
+import VTEXIOAppsIcon from 'components/icons/vtex-io-apps-icon'
+import { IconComponent } from './types'
+import AddedIcon from 'components/icons/added-icon'
+import DeprecatedIcon from 'components/icons/deprecated-icon'
+import FixedIcon from 'components/icons/fixed-icon'
+import ImprovedIcon from 'components/icons/improved-icon'
+import RemovedIcon from 'components/icons/removed-icon'
 
 export const getBreadcrumbs = (hit: Hit) => {
   const breadcrumbs: string[] = []
@@ -28,40 +28,40 @@ export const getRelativeURL = (url: string) => {
 }
 
 interface IconsI {
-  name: string;
-  Icon: IconComponent;
+  name: string
+  Icon: IconComponent
 }
 
 const iconsMap: IconsI[] = [
   {
     Icon: APIGuidesIcon,
-    name: "Guides",
+    name: 'Guides',
   },
   {
     Icon: APIReferenceIcon,
-    name: "API Reference",
+    name: 'API Reference',
   },
   {
     Icon: AppDevelopmentIcon,
-    name: "App Development",
+    name: 'App Development',
   },
   {
     Icon: StorefrontDevelopmentIcon,
-    name: "Storefront Development",
+    name: 'Storefront Development',
   },
   {
     Icon: VTEXIOAppsIcon,
-    name: "VTEX IO Apps",
+    name: 'VTEX IO Apps',
   },
   {
     Icon: ReleaseNotesIcon,
-    name: "Release Notes",
+    name: 'Release Notes',
   },
-];
+]
 
 export const getIcon = (name: string) => {
-  return iconsMap.find((icon) => icon.name === name)?.Icon;
-};
+  return iconsMap.find((icon) => icon.name === name)?.Icon
+}
 
 export type ActionType =
   | 'added'

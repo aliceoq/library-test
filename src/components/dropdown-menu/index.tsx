@@ -1,18 +1,16 @@
-import { Box } from "@vtex/brand-ui";
-
-import DocumentationCard from "components/documentation-card";
-
-import { Section } from "utils/types";
-import styles from "./styles";
+import { Box } from '@vtex/brand-ui'
+import DocumentationCard from 'components/documentation-card'
+import { Section } from 'utils/types'
+import styles from './styles'
 
 interface Props {
-  isEditor: boolean;
-  sections: Section[][];
-  editorSections?: Section[][];
+  isEditor: boolean
+  sections: Section[][]
+  editorSections?: Section[][]
 }
 
 const DropdownMenu = ({ isEditor, sections, editorSections = [] }: Props) => {
-  const dropdownSections = isEditor ? editorSections : sections;
+  const dropdownSections = isEditor ? editorSections : sections
 
   return (
     <Box sx={styles.outerContainer}>
@@ -40,7 +38,7 @@ const DropdownMenu = ({ isEditor, sections, editorSections = [] }: Props) => {
         ))}
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default DropdownMenu;
+export default DropdownMenu

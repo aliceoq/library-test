@@ -19,9 +19,15 @@ const Sidebar = ({ parentsArray = [] }: SideBarSectionState) => {
   const [expandDelayStatus, setExpandDelayStatus] = useState(true)
 
   const context = useContext(LibraryContext)
-  const {isEditorPreview, setActiveSectionName, activeSectionName, sidebarSections, sidebarDataMaster} = context
-  
-  updateOpenPage({parentsArray, context, setExpandDelayStatus})
+  const {
+    isEditorPreview,
+    setActiveSectionName,
+    activeSectionName,
+    sidebarSections,
+    sidebarDataMaster,
+  } = context
+
+  updateOpenPage({ parentsArray, context, setExpandDelayStatus })
 
   const SideBarIcon = (sectionElement: Section) => {
     const [iconTooltip, setIconTooltip] = useState(false)

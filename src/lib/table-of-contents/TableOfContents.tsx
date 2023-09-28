@@ -13,11 +13,12 @@ import styles from './styles'
 
 const TableOfContents = () => {
   const router = useRouter()
-  const { headingItems, activeItem, setHeadingItems, setActiveItem } = useContext(LibraryContext)
+  const { headingItems, activeItem, setHeadingItems, setActiveItem } =
+    useContext(LibraryContext)
 
   useEffect(() => {
     console.log('ENTROUUUUUUUUU')
-    let headings: Item[] = []
+    const headings: Item[] = []
     if (!headings.length) {
       document.querySelectorAll('h2, h3').forEach((heading) => {
         const headingSlug = heading.id
@@ -25,13 +26,12 @@ const TableOfContents = () => {
           title: removeHTML(heading.innerHTML).replace(':', ''),
           slug: headingSlug,
         }
-  
+
         if (heading.tagName === 'H2') {
           headings.push({ ...item, children: [] })
         } else {
           headings[headings.length - 1].children.push({ ...item })
         }
-
       })
       setHeadingItems(headings)
     }

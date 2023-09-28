@@ -6,10 +6,12 @@ import { SWRConfig } from 'swr'
 
 interface Props extends Partial<ContextType> {
   children: ReactNode
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fallback?: any
   sections: Section[][]
   isPreview: boolean
   sectionSelected: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   searchClient: any
 }
 
@@ -24,8 +26,10 @@ export type ContextType = {
   sidebarSectionHidden: boolean
   activeSectionName: string
   activeSidebarElement: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   sidebarDataMaster: any
   sidebarElementStatus: Map<string, boolean>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setSidebarDataMaster: Dispatch<SetStateAction<any>>
   setIsEditorPreview: Dispatch<SetStateAction<boolean>>
   setSidebarSectionHidden: Dispatch<SetStateAction<boolean>>
@@ -36,13 +40,14 @@ export type ContextType = {
   closeSidebarElements: (parentsArray: string[]) => void
   sidebarSections: Section[][]
   setSidebarSections: Dispatch<SetStateAction<Section[][]>>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   searchClient: any
 }
 
 type ActiveItem = {
   item: string
   subItem: string
-} 
+}
 
 export const LibraryContext = createContext<ContextType>({
   headingItems: [],
@@ -61,6 +66,7 @@ export const LibraryContext = createContext<ContextType>({
   sidebarDataMaster: {},
   setIsEditorPreview: () => undefined,
   sidebarElementStatus: new Map(),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   setSidebarDataMaster: (_: any) => undefined,
   setSidebarSectionHidden: () => undefined,
   setActiveSectionName: () => undefined,
@@ -70,7 +76,7 @@ export const LibraryContext = createContext<ContextType>({
   closeSidebarElements: () => undefined,
   sidebarSections: [],
   setSidebarSections: () => undefined,
-  searchClient: undefined
+  searchClient: undefined,
 })
 
 const LibraryContextProvider = ({ children, ...props }: Props) => {

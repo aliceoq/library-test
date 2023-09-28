@@ -129,16 +129,11 @@ const MermaidDiagram = ({ node, ...props }: Component) => {
 const ImageComponent = ({ node, ...props }: Component) => {
   const [srcHasError, setSrcHasError] = useState(false)
   const regularImg = (
-    <img
-      src={props.src}
-      alt={props.alt}
-      onError={() => setSrcHasError(true)}
-    />
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={props.src} alt={props.alt} onError={() => setSrcHasError(true)} />
   )
   const errorMessage = (
-    <blockquote
-      className={`${styles.blockquote} ${styles.blockquoteWarning}`}
-    >
+    <blockquote className={`${styles.blockquote} ${styles.blockquoteWarning}`}>
       {'ErrorMessage'} {props.src}
     </blockquote>
   )
@@ -150,14 +145,9 @@ const ImageComponent = ({ node, ...props }: Component) => {
     console.log(`Error parsing`, error)
     return errorMessage
   }
-  return !srcHasError ? (
-    <LightBox>{regularImg}</LightBox>
-  ) : (
-    errorMessage
-  )
+  return !srcHasError ? <LightBox>{regularImg}</LightBox> : errorMessage
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   OverviewCard,
   WhatsNextCard,

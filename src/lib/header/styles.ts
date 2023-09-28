@@ -82,7 +82,7 @@ const rightLinksItem: SxStyleProp = {
       stroke: '#C81E51',
     },
   },
-  
+
   minWidth: 'auto !important',
 }
 

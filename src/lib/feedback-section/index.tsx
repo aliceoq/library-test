@@ -15,7 +15,12 @@ interface DocPath {
   sendFeedback: (comment: string, liked: boolean) => Promise<void>
 }
 
-const FeedbackSection = ({ slug, urlToEdit, suggestEdits = true, sendFeedback }: DocPath) => {
+const FeedbackSection = ({
+  slug,
+  urlToEdit,
+  suggestEdits = true,
+  sendFeedback,
+}: DocPath) => {
   const [feedback, changeFeedback] = useState<boolean | undefined>(undefined)
   const [prevSlug, setPrevSlug] = useState(slug)
   const [modalState, changeModalState] = useState<ModalProps>({
@@ -88,7 +93,9 @@ const FeedbackSection = ({ slug, urlToEdit, suggestEdits = true, sendFeedback }:
           changeModalState={changeModalState}
           modalState={modalState}
           chosenButtonRef={modalState.liked ? likeButton : dislikeButton}
-          onSubmit={(comment) => sendFeedback(comment, modalState.liked ?? false)}
+          onSubmit={(comment) =>
+            sendFeedback(comment, modalState.liked ?? false)
+          }
         />
       ) : null}
     </Flex>

@@ -9,8 +9,7 @@ import {
   StateResultsProvided,
 } from 'react-instantsearch-core'
 import SearchCard from 'components/search-card'
-import { getIcon, getRelativeURL } from 'utils/search-utils'
-import { ActionType } from 'components/last-updates-card/functions'
+import { ActionType, getIcon, getRelativeURL } from 'utils/search-utils'
 import { Box, Flex } from '@vtex/brand-ui'
 import { MethodType } from 'utils/types'
 import { SearchContext } from 'utils/context/search'
@@ -33,7 +32,7 @@ const Hit = ({ hit }: HitProps) => {
   return (
     <SearchCard
       doc={hit.doctype}
-      Icon={DocIcon!}
+      Icon={DocIcon}
       title={hit.doctitle}
       method={(hit.method as MethodType) || undefined}
       breadcrumbs={(breadcrumbs as string[]) || []}

@@ -7,7 +7,7 @@ import {
 } from '@vtex/brand-ui'
 import styles from './styles'
 
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import DocumentationCard from 'components/documentation-card'
 import SidebarSection, { SidebarSectionProps } from 'components/sidebar-section'
 import { updateOpenPage } from 'utils/sidebar-utils'
@@ -18,7 +18,7 @@ interface HamburgerMenuProps {
   parentsArray?: string[]
 }
 
-const HamburgerMenu = ({parentsArray = []}: HamburgerMenuProps) => {  
+const HamburgerMenu = ({ parentsArray = [] }: HamburgerMenuProps) => {
   const context = useContext(LibraryContext)
   const {
     sidebarDataMaster,
@@ -29,7 +29,7 @@ const HamburgerMenu = ({parentsArray = []}: HamburgerMenuProps) => {
     sidebarSections,
   } = context
 
-  updateOpenPage({parentsArray, context})
+  updateOpenPage({ parentsArray, context })
 
   return (
     <Header.ActionButton>

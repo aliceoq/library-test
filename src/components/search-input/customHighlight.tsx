@@ -136,12 +136,15 @@ const Highlight = ({
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface HighlightPassedThru<TDoc = any> {
-  hit: Hit<TDoc>;
-  attribute: string;
-  highlightProperty?: string | undefined;
+  hit: Hit<TDoc>
+  attribute: string
+  highlightProperty?: string | undefined
 }
 
-const connectedHighlight: React.ComponentClass<HighlightPassedThru<any>> = connectHighlight(Highlight)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const connectedHighlight: React.ComponentClass<HighlightPassedThru<any>> =
+  connectHighlight(Highlight)
 
 export default connectedHighlight

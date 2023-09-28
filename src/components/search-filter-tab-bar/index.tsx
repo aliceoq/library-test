@@ -5,11 +5,7 @@ import styles from './styles'
 import { SearchContext } from 'utils/context/search'
 import { LibraryContext } from 'utils/context/libraryContext'
 
-const SearchFilterTab = ({
-  filter,
-}: {
-  filter: string
-}) => {
+const SearchFilterTab = ({ filter }: { filter: string }) => {
   const { filterSelectedSection, changeFilterSelectedSection, ocurrenceCount } =
     useContext(SearchContext)
 
@@ -32,7 +28,7 @@ const SearchFilterTabBar = () => {
     <Flex sx={styles.container}>
       <SearchFilterTab filter="" />
       {sidebarSections.flat().map((section) => {
-        <SearchFilterTab key={section.title} filter={section.title} />
+        ;<SearchFilterTab key={section.title} filter={section.title} />
       })}
     </Flex>
   )

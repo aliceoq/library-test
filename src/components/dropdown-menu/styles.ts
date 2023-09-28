@@ -56,5 +56,5 @@ export default {
   documentationContainer,
   innerContainer,
   outerContainer,
-  sectionDivider
+  sectionDivider,
 }

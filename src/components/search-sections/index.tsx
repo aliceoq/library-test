@@ -1,12 +1,12 @@
-import { Box } from "@vtex/brand-ui";
+import { Box } from '@vtex/brand-ui'
 
-import SearchSection from "components/search-section";
-import styles from "./styles";
-import { useContext } from "react";
-import { LibraryContext } from "utils/context/libraryContext";
+import SearchSection from 'components/search-section'
+import styles from './styles'
+import { useContext } from 'react'
+import { LibraryContext } from 'utils/context/libraryContext'
 
 const SearchSections = () => {
-  const { sidebarSections } = useContext(LibraryContext);
+  const { sidebarSections } = useContext(LibraryContext)
 
   return (
     <Box sx={styles.container}>
@@ -29,7 +29,7 @@ const SearchSections = () => {
         </>
       ))}
     </Box>
-  );
-};
+  )
+}
 
-export default SearchSections;
+export default SearchSections

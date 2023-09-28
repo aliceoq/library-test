@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles'
-import { Flex, Box, IconProps } from '@vtex/brand-ui'
+import { Flex, Box } from '@vtex/brand-ui'
 import * as Icons from './icons'
 import { IconComponent } from 'utils/types'
 

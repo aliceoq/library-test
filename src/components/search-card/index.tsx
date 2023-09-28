@@ -17,7 +17,7 @@ interface SearchCardProps {
   breadcrumbs?: string[]
   method?: MethodType
   actionType?: ActionType
-  Icon: IconComponent
+  Icon?: IconComponent
   url: string
   hit: FilteredHit
 }

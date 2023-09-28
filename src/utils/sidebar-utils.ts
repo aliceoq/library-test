@@ -1,21 +1,25 @@
-import { Section } from "./types";
-import { flattenJSON, getKeyByEndpoint, getParents } from "./navigation-utils";
-import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useEffect } from "react";
-import { ContextType } from "./context/libraryContext";
+import { Section } from './types'
+import { flattenJSON, getKeyByEndpoint, getParents } from './navigation-utils'
+import { useRouter } from 'next/router'
+import { Dispatch, SetStateAction, useEffect } from 'react'
+import { ContextType } from './context/libraryContext'
 
 export const getIcon = (doc: string, sections: Section[][]) => {
   for (const section of sections) {
-    return section.find((icon) => icon.title === doc)?.Icon;
+    return section.find((icon) => icon.title === doc)?.Icon
   }
-};
+}
 
 interface updateOpenPageProps {
   parentsArray?: string[]
   context: ContextType
   setExpandDelayStatus?: Dispatch<SetStateAction<boolean>>
 }
-export const updateOpenPage = ({ parentsArray = [], context, setExpandDelayStatus }: updateOpenPageProps) => {
+export const updateOpenPage = ({
+  parentsArray = [],
+  context,
+  setExpandDelayStatus,
+}: updateOpenPageProps) => {
   const {
     activeSidebarElement,
     sidebarDataMaster,
@@ -54,7 +58,10 @@ export const updateOpenPage = ({ parentsArray = [], context, setExpandDelayStatu
   }
 
   useEffect(() => {
-    const timer = setTimeout(() => setExpandDelayStatus && setExpandDelayStatus(false), 5000)
+    const timer = setTimeout(
+      () => setExpandDelayStatus && setExpandDelayStatus(false),
+      5000
+    )
     closeSidebarElements(parentsArray)
     parentsArray.forEach((slug: string) => {
       openSidebarElement(slug)
