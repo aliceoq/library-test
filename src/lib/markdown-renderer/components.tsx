@@ -20,7 +20,7 @@ import { LibraryContext } from 'utils/context/libraryContext'
 import { childrenToString, slugify } from 'utils/string-utils'
 import mermaidInit from 'utils/mermaidInit'
 
-import { Component, ObservableHeadingProps } from './MarkdownRenderer.types'
+import { Component, ObservableHeadingProps } from './index.types'
 import styles from './styles.module.css'
 
 mermaidInit()

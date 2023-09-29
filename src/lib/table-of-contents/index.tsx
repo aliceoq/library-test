@@ -17,7 +17,6 @@ const TableOfContents = () => {
     useContext(LibraryContext)
 
   useEffect(() => {
-    console.log('ENTROUUUUUUUUU')
     const headings: Item[] = []
     if (!headings.length) {
       document.querySelectorAll('h2, h3').forEach((heading) => {
