@@ -14,7 +14,7 @@ import { LibraryContext } from 'utils/context/libraryContext'
 const SearchResults = () => {
   const router = useRouter()
   const { filterSelectedSection, ocurrenceCount } = useContext(SearchContext)
-  const { searchClient } = useContext(LibraryContext)
+  const { searchClient, index } = useContext(LibraryContext)
   const filters = filterSelectedSection
     ? `doctype: "${filterSelectedSection}"`
     : ''
@@ -41,7 +41,7 @@ const SearchResults = () => {
       <Box>
         <InstantSearch
           searchClient={searchClient}
-          indexName="devportal-docs"
+          indexName={index}
           searchState={searchState}
           onSearchStateChange={(currentState) =>
             updateSearchState(currentState)

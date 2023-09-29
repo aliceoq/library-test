@@ -7,7 +7,7 @@ import useClickOutside from 'utils/hooks/useClickOutside'
 import { LibraryContext } from 'utils/context/libraryContext'
 
 export default function SearchInput() {
-  const { searchClient } = useContext(LibraryContext)
+  const { searchClient, index } = useContext(LibraryContext)
   const [focusOut, setfocusOut] = useState<{ modaltoggle: boolean }>({
     modaltoggle: true,
   })
@@ -19,7 +19,7 @@ export default function SearchInput() {
   }
 
   return (
-    <InstantSearch searchClient={searchClient} indexName="devportal-docs">
+    <InstantSearch searchClient={searchClient} indexName={index}>
       <Configure clickAnalytics={true} />
       <Box onFocus={() => setfocusOut({ modaltoggle: true })} ref={resultsBox}>
         <SearchBox changeFocus={changeFocus} />

@@ -41,6 +41,7 @@
     "@types/react-router-hash-link": "^2.4.6",
     "@types/react-svg-pan-zoom": "^3.3.5",
     "@vtex/prettier-config": "^1.0.0",
+    "algoliasearch": "^4.14.2",
     "autoprefixer": "^10.4.15",
     "esbuild-sass-plugin": "^2.15.0",
     "eslint": "^7.32.0",
