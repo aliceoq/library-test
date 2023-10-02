@@ -2,12 +2,11 @@ import { Configure, InstantSearch } from 'react-instantsearch-dom'
 import SearchBox from './search-box'
 import Results from './results-box'
 import { Box } from '@vtex/brand-ui'
-import { useContext, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import useClickOutside from 'utils/hooks/useClickOutside'
-import { LibraryContext } from 'utils/context/libraryContext'
+import { searchClient, searchIndex } from 'config/config'
 
 export default function SearchInput() {
-  const { searchClient, index } = useContext(LibraryContext)
   const [focusOut, setfocusOut] = useState<{ modaltoggle: boolean }>({
     modaltoggle: true,
   })
@@ -19,7 +18,7 @@ export default function SearchInput() {
   }
 
   return (
-    <InstantSearch searchClient={searchClient} indexName={index}>
+    <InstantSearch searchClient={searchClient} indexName={searchIndex}>
       <Configure clickAnalytics={true} />
       <Box onFocus={() => setfocusOut({ modaltoggle: true })} ref={resultsBox}>
         <SearchBox changeFocus={changeFocus} />

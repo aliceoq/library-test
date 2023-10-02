@@ -3,9 +3,6 @@ import { createContext, useEffect, useState } from 'react'
 import { Item } from 'lib/table-of-contents/TableOfContents.types'
 import { Section } from 'utils/types'
 import { SWRConfig } from 'swr'
-import aa from 'search-insights'
-import algoliasearch, { AlgoliaSearchOptions } from 'algoliasearch/lite'
-import { MultipleQueriesQuery } from '@algolia/client-search'
 
 interface Props extends Partial<ContextType> {
   children: ReactNode
@@ -15,16 +12,6 @@ interface Props extends Partial<ContextType> {
   isPreview: boolean
   sectionSelected: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  searchConfig:
-    | {
-        appId: string
-        apiKey: string
-        index: string
-        algoliaOptions?: AlgoliaSearchOptions
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        customOptions?: any
-      }
-    | undefined
 }
 
 export type ContextType = {
@@ -53,8 +40,6 @@ export type ContextType = {
   sidebarSections: Section[][]
   setSidebarSections: Dispatch<SetStateAction<Section[][]>>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  searchClient: any
-  index: string
 }
 
 type ActiveItem = {
@@ -89,15 +74,9 @@ export const LibraryContext = createContext<ContextType>({
   closeSidebarElements: () => undefined,
   sidebarSections: [],
   setSidebarSections: () => undefined,
-  searchClient: undefined,
-  index: '',
 })
 
-const LibraryContextProvider = ({
-  children,
-  searchConfig,
-  ...props
-}: Props) => {
+const LibraryContextProvider = ({ children, ...props }: Props) => {
   const [headingItems, setHeadingItems] = useState<Item[]>([])
   const [activeItem, setActiveItem] = useState<ActiveItem>({
     item: '',
@@ -187,34 +166,6 @@ const LibraryContextProvider = ({
     })
   }
 
-  aa('init', {
-    appId: searchConfig?.appId || '',
-    apiKey: searchConfig?.apiKey || '',
-    useCookie: true,
-  })
-
-  aa('getUserToken', null, (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-  })
-
-  const algoliaClient = algoliasearch(
-    searchConfig?.appId || '',
-    searchConfig?.apiKey || '',
-    searchConfig?.algoliaOptions
-  )
-
-  const searchClient = {
-    ...algoliaClient,
-    ...searchConfig?.customOptions,
-    search(requests: MultipleQueriesQuery[]) {
-      if (requests.every(({ params }) => !params?.query)) return
-      return algoliaClient.search(requests)
-    },
-  }
-
   return (
     <LibraryContext.Provider
       value={{
@@ -240,8 +191,6 @@ const LibraryContextProvider = ({
         setSidebarDataMaster,
         sidebarSections,
         setSidebarSections,
-        index: searchConfig?.index ?? '',
-        searchClient: searchClient,
         ...props,
       }}
     >

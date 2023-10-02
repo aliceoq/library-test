@@ -9,12 +9,11 @@ import InfiniteHits from './infiniteHits'
 
 import styles from './styles'
 import { SearchContext } from 'utils/context/search'
-import { LibraryContext } from 'utils/context/libraryContext'
+import { searchClient, searchIndex } from 'config/config'
 
 const SearchResults = () => {
   const router = useRouter()
   const { filterSelectedSection, ocurrenceCount } = useContext(SearchContext)
-  const { searchClient, index } = useContext(LibraryContext)
   const filters = filterSelectedSection
     ? `doctype: "${filterSelectedSection}"`
     : ''
@@ -41,7 +40,7 @@ const SearchResults = () => {
       <Box>
         <InstantSearch
           searchClient={searchClient}
-          indexName={index}
+          indexName={searchIndex}
           searchState={searchState}
           onSearchStateChange={(currentState) =>
             updateSearchState(currentState)
