@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link.js'
 import { Box, Flex, Text } from '@vtex/brand-ui'
 
 import styles from './styles'

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useContext } from 'react'
 import { Flex, Text, Box } from '@vtex/brand-ui'
-import Link from 'next/link'
+import Link from 'next/link.js'
 
 import styles from './styles'
 import { iconTooltipStyle } from './functions'
