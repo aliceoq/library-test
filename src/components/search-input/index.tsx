@@ -4,7 +4,7 @@ import Results from './results-box'
 import { Box } from '@vtex/brand-ui'
 import { useRef, useState } from 'react'
 import useClickOutside from 'utils/hooks/useClickOutside'
-import { searchClient, searchIndex } from 'config/config'
+import { searchClient, searchIndex } from 'utils/config/search-config'
 
 export default function SearchInput() {
   const [focusOut, setfocusOut] = useState<{ modaltoggle: boolean }>({
