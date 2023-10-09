@@ -1,5 +1,5 @@
 {
-  "name": "library-test",
+  "name": "@aliceoq/library-test",
   "publishConfig": {
     "access": "public"
   },
@@ -7,8 +7,11 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
   "version": "1.3.3",
-  "description": "",
-  "repository": "https://github.com/aliceoq/library-test",
+  "description": "blablabla",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliceoq/library-test.git"
+  },
   "scripts": {
     "build": "rm -rf ./dist && tsup",
     "lint": "npx eslint . --ext .ts,.tsx"
@@ -57,5 +60,9 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "18.2.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/aliceoq/library-test/issues"
+  },
+  "homepage": "https://github.com/aliceoq/library-test#readme"
 }
