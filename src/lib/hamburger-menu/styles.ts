@@ -46,13 +46,11 @@ const documentationContainer: SxStyleProp = {
   paddingBottom: '8px',
 }
 
-const sectionDivider: SxStyleProp = {
+const updatesContainer: SxStyleProp = {
   px: '16px',
-  hr: {
-    border: '1px solid #E7E9EE',
-    borderTop: 'none',
-    mb: '32px',
-  },
+  paddingTop: '8px',
+  borderRadius: '0px 0px 8px 8px',
+  borderTop: '1px solid #E7E9EE',
 }
 
 const innerHambugerContainer: SxStyleProp = {
@@ -85,7 +83,7 @@ export default {
   sideMenuContainer,
   hamburgerSearchContainer,
   documentationContainer,
-  sectionDivider,
+  updatesContainer,
   hamburgerContainer,
   innerHambugerContainer,
   innerCardContainer,

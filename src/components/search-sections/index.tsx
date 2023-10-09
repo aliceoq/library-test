@@ -11,22 +11,22 @@ const SearchSections = () => {
   return (
     <Box sx={styles.container}>
       {sidebarSections.map((sections, id) => (
-        <>
-          {id > 0 && (
-            <Box sx={styles.sectionDivider}>
-              <hr />
-            </Box>
-          )}
-          <Box sx={styles.notesSection}>
-            {sections.map((section, index) => (
-              <SearchSection
-                key={`search-section-docs-${section.title}`}
-                dataElement={section}
-                index={index}
-              />
-            ))}
-          </Box>
-        </>
+        <Box
+          sx={
+            id < sidebarSections.length - 1
+              ? styles.docsSection
+              : styles.notesSection
+          }
+        >
+          {id === 0 && <SearchSection dataElement={null} />}
+          {sections.map((section, index) => (
+            <SearchSection
+              key={`search-section-docs-${section.title}`}
+              dataElement={section}
+              index={index}
+            />
+          ))}
+        </Box>
       ))}
     </Box>
   )

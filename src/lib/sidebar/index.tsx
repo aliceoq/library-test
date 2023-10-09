@@ -110,11 +110,11 @@ const Sidebar = ({ parentsArray = [] }: SideBarSectionState) => {
           return (
             <>
               {id > 0 && (
-                <Box sx={styles.sectionDivider}>
+                <Box sx={styles.sectionDivider} key={`${id}-divider`}>
                   <hr />
                 </Box>
               )}
-              <Flex sx={styles.sidebarIconsContainer}>
+              <Flex sx={styles.sidebarIconsContainer} key={id}>
                 {section.map((element) => (
                   <SideBarIcon
                     {...element}

@@ -3,10 +3,10 @@ export {
   TableOfContents,
   Sidebar,
   HamburgerMenu,
-  Header,
   FeedbackSection,
+  SearchInput,
   Search,
 } from './lib'
 export { default as LibraryContextProvider } from 'utils/context/libraryContext'
 export { LibraryContext } from 'utils/context/libraryContext'
-export { default as LibraryConfig } from 'config/config'
+export { default as SearchConfig } from 'utils/config/search-config'

@@ -15,17 +15,13 @@ const notesSection: SxStyleProp = {
   paddingTop: '8px',
 }
 
-const sectionDivider: SxStyleProp = {
-  px: '8px',
-  marginTop: '16px',
-  hr: {
-    border: '1px solid #E7E9EE',
-    borderTop: 'none',
-  },
+const docsSection: SxStyleProp = {
+  ...notesSection,
+  borderBottom: '1px solid #E7E9EE',
 }
 
 export default {
   container,
   notesSection,
-  sectionDivider,
+  docsSection,
 }

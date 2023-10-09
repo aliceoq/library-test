@@ -9,7 +9,7 @@ import InfiniteHits from './infiniteHits'
 
 import styles from './styles'
 import { SearchContext } from 'utils/context/search'
-import { searchClient, searchIndex } from 'config/config'
+import { searchClient, searchIndex } from 'utils/config/search-config'
 
 const SearchResults = () => {
   const router = useRouter()
