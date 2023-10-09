@@ -1,5 +1,5 @@
 {
-  "name": "robsonolv-library-test",
+  "name": "library-test",
   "publishConfig": {
     "access": "public"
   },
@@ -8,7 +8,7 @@
   "types": "./dist/index.d.mts",
   "version": "1.3.3",
   "description": "",
-  "repository": "https://github.com/RobsonOlv/library-test",
+  "repository": "https://github.com/aliceoq/library-test",
   "scripts": {
     "build": "rm -rf ./dist && tsup",
     "lint": "npx eslint . --ext .ts,.tsx"
