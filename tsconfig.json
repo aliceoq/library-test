@@ -5,7 +5,7 @@
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "target": "ESNext",
-    "module": "esnext",
+    "module": "CommonJS",
     "declaration": true,
     "declarationDir": "./dist",
     "sourceMap": true,
